@@ -39,4 +39,5 @@ class Post
 
         return $posts->firstWhere('slug', $slug);
     }
+    
 }
