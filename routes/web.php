@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,58 +33,8 @@ Route::get('/about', function () {
 
 
 
-Route::get('/blog', function () {
-    $blog_post = [
-        [
-            "title" => "INI adalah Judul",
-            "slug" => "ini-adalah-judul",
-            "author" => "Surya Putra",
-            "body" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti iure sequi facilis asperiores eum ratione reiciendis quaerat harum! Placeat ad sint vitae, accusamus totam ipsum itaque ducimus debitis quaerat nostrum odit libero impedit sit excepturi similique unde? Animi, id officia cupiditate, voluptas illum excepturi iure molestiae recusandae explicabo dolorum pariatur corrupti, laudantium quis incidunt impedit doloremque possimus obcaecati perspiciatis eum. Ducimus, reiciendis voluptatem? Voluptates id natus explicabo, neque consequatur provident cum? Tenetur fugit consectetur a deleniti facilis doloribus praesentium. Vitae nemo placeat, autem tempore officiis sequi necessitatibus. Culpa porro ipsum officia assumenda quaerat sapiente cupiditate excepturi fugiat aliquam et. Delectus."
-
-        ],
-        [
-            "title" => "INI adalah Judul Kedua",
-            "slug" => "ini-adalah-judul-kedua",
-            "author" => "Pratama",
-            "body" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti iure sequi facilis asperiores eum ratione reiciendis quaerat harum! Placeat ad sint vitae, accusamus totam ipsum itaque ducimus debitis quaerat nostrum odit libero impedit sit excepturi similique unde? Animi, id officia cupiditate, voluptas illum excepturi iure molestiae recusandae explicabo dolorum pariatur corrupti, laudantium quis incidunt impedit doloremque possimus obcaecati perspiciatis eum. Ducimus, reiciendis voluptatem? Voluptates id natus explicabo, neque consequatur provident cum? Tenetur fugit consectetur a deleniti facilis doloribus praesentium. Vitae nemo placeat, autem tempore officiis sequi necessitatibus. Culpa porro ipsum officia assumenda quaerat sapiente cupiditate excepturi fugiat aliquam et. Delectus."
-
-        ]
-    ];
-
-    return view('posts', [
-        "title" => "Posts",
-        "posts" => $blog_post
-    ]);
-});
+Route::get('/blog', [PostController::class, 'index']);
 
 
 // Halaman single
-Route::get('post/{slug}' , function($slug) {
-    $blog_post = [
-        [
-            "title" => "INI adalah Judul",
-            "slug" => "ini-adalah-judul",
-            "author" => "Surya Putra",
-            "body" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti iure sequi facilis asperiores eum ratione reiciendis quaerat harum! Placeat ad sint vitae, accusamus totam ipsum itaque ducimus debitis quaerat nostrum odit libero impedit sit excepturi similique unde? Animi, id officia cupiditate, voluptas illum excepturi iure molestiae recusandae explicabo dolorum pariatur corrupti, laudantium quis incidunt impedit doloremque possimus obcaecati perspiciatis eum. Ducimus, reiciendis voluptatem? Voluptates id natus explicabo, neque consequatur provident cum? Tenetur fugit consectetur a deleniti facilis doloribus praesentium. Vitae nemo placeat, autem tempore officiis sequi necessitatibus. Culpa porro ipsum officia assumenda quaerat sapiente cupiditate excepturi fugiat aliquam et. Delectus."
-
-        ],
-        [
-            "title" => "INI adalah Judul Kedua",
-            "slug" => "ini-adalah-judul-kedua",
-            "author" => "Pratama",
-            "body" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti iure sequi facilis asperiores eum ratione reiciendis quaerat harum! Placeat ad sint vitae, accusamus totam ipsum itaque ducimus debitis quaerat nostrum odit libero impedit sit excepturi similique unde? Animi, id officia cupiditate, voluptas illum excepturi iure molestiae recusandae explicabo dolorum pariatur corrupti, laudantium quis incidunt impedit doloremque possimus obcaecati perspiciatis eum. Ducimus, reiciendis voluptatem? Voluptates id natus explicabo, neque consequatur provident cum? Tenetur fugit consectetur a deleniti facilis doloribus praesentium. Vitae nemo placeat, autem tempore officiis sequi necessitatibus. Culpa porro ipsum officia assumenda quaerat sapiente cupiditate excepturi fugiat aliquam et. Delectus."
-
-        ]
-    ];
-    $new_post = [];
-    foreach($blog_post as $post){
-        if($post["slug"] === $slug){
-            $new_post = $post;
-        }
-    }
-
-    return view('post',[
-        "title" => "Single Post",
-        "post" => $new_post
-    ]);
-});
+Route::get('post/{slug}' , [PostController::class, 'show']);
