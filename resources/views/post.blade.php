@@ -8,7 +8,7 @@
         <div class="col-md-8">
             <h2 class="mb-3">{{ $post->title }}</h2>
             
-            <p>By. <a class="text-decoration-none" href="/authors/{{ $post->author->username }}"> {{ $post->author->name }} </a> in <a a class="text-decoration-none" href="/categories/{{ $post->category->slug }}"> {{ $post->category->name }}
+            <p>By. <a class="text-decoration-none" href="/blog?authors={{ $post->author->username }}"> {{ $post->author->name }} </a> in <a a class="text-decoration-none" href="/blog?category={{ $post->category->slug }}"> {{ $post->category->name }}
             </a></p>
 
             <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" alt="{{ $post->category->name }}" class="img-fluid">

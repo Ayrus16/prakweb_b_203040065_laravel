@@ -19,7 +19,8 @@ use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('home',[
-        "title" => "Home"
+        "title" => "Home",
+        "active" => 'home'
     ]);
 });
 Route::get('/about', function () {
@@ -27,7 +28,8 @@ Route::get('/about', function () {
         "name" => "Surya Putra Pratama",
         "email" => "203040065@unpas.ac.id",
         "image" => "nophoto.jpg",
-        "title" => "About"
+        "title" => "About",
+        "active" => 'about'
     ]);
 });
 
@@ -62,5 +64,6 @@ Route::get('/authors/{author:username}', function(User $author) {
     return view('posts', [
         'title' => "Post By Author : $author->name",
         'posts' => $author->post->load('category','author'),
+        "active" => 'posts'
      ]);
 });
